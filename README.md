@@ -23,11 +23,13 @@ CELERY_TASK_DEFAULT_QUEUE = 'default'
 5- implement celery in your created module:
 ```
 from celery import Celery
+import os
 
 # create an instance of Celery and set the name to name of your module.
 app = Celery('core') 
 
 # import celery configs here:
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_celery.settings")
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
 ```
